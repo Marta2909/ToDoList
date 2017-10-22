@@ -1,0 +1,14 @@
+<div class="container_fluid">
+  <%= simple_form_for @task do |f| %>
+      <%= f.input :name, label: "Co trzeba zrobić?", error: "nie może być puste" %>
+      <%= f.input :priority, label: "Priorytet", as: :select, collection: ["ważne", "zwykłe"], error: "nie może być puste"  %>
+      <%= f.input :deadline,  as: :string, input_html: { class:"datetimepicker" } %>
+      <%= f.submit "Dodaj zadanie" %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('.datetimepicker').datetimepicker({
+    format: "YYYY-MM-DD"
+  });
+  </script>

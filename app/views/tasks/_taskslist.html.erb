@@ -1,0 +1,10 @@
+<tr>
+  <td><%= local_assigns[:t].name %></td>
+  <td>
+    <% if local_assigns[:t].priority == "ważne" %>
+      <p><i class="fa fa-exclamation" aria-hidden="true"></i></p>
+    <% end %>
+  </td>
+  <td><%= format_date_time(local_assigns[:t].deadline) %></td>
+  <td><%= check_box_tag "tasks[]", local_assigns[:t].id %></td>
+</tr>
