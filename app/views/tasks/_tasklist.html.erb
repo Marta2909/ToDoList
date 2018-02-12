@@ -1,0 +1,10 @@
+<tr>
+  <td><%= t.name %></td>
+  <td>
+    <% if t.priority == "important" %>
+      <p><i class="fa fa-exclamation" aria-hidden="true"></i></p>
+    <% end %>
+  </td>
+  <td><%= format_date_time(t.deadline) %></td>
+  <td><%= check_box_tag "tasks[]", t.id %></td>
+</tr>

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.order(deadline: :ASC)
+    @tasks = Task.order(deadline: :DESC)
   end
 
   def new
@@ -9,11 +9,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.assign_attributes({:finished => "false"})
     if @task.save
       redirect_to root_path
     else
-      render action: "new"
+      flash[:notice] = "All fields are required. Try again"
+      render :new
     end
   end
 
@@ -23,6 +23,7 @@ class TasksController < ApplicationController
   end
 
   private
+
   def task_params
     params.require(:task).permit(:name, :priority, :deadline)
   end

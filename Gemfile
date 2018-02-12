@@ -7,9 +7,9 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -29,20 +29,15 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-###
-#Bootstrap
-gem 'bootstrap', '~> 4.0.0.beta'
+# Bootstrap 4, Copyright (c) 2013-2016 Twitter, Inc, read more: https://github.com/twbs/bootstrap-rubygem
+gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
-#Simple form
-gem 'simple_form'
-#Font Awesome
+#Font Awesome, Copyright (c) 2012-2017 bokmann, read more: https://github.com/bokmann/font-awesome-rails
 gem "font-awesome-rails"
-#datetimepicker
-gem 'momentjs-rails'
-
-gem 'rails-i18n', '~> 5.0.0'
-gem 'rails-controller-testing'
+#simple_form, Copyright (c) 2009-2016 Plataformatec http://plataformatec.com.br/, read more: https://github.com/plataformatec/simple_form
+gem 'simple_form'
+#datepicker, Copyright (c) 2014 Gonzalo Rodríguez-Baltanás Díaz, read more: https://github.com/Nerian/bootstrap-datepicker-rails
+gem 'bootstrap-datepicker-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -51,9 +46,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'rspec-rails'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+  #RSpec
+  gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
+  gem 'rails-controller-testing'
 end
 
 group :development do

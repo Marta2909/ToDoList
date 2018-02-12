@@ -1,81 +1,50 @@
+<%= link_to "Add new task", new_task_path, class: "btn btn-warning" %>
 <%= form_tag multi_delete_tasks_path, method: :delete do %>
-
-<!-- nawigacja górna -->
-  <div class="d-flex justify-content-end">
-    <!-- jeśli będziemy w akcji new to nie będzie przycisku tylko tekst "dodawanie nowego wpisu" -->
-    <% if params[:controller] != 'TasksController' && params[:action] != 'new' %>
-      <div class="mr-auto p-2">
-        <%= link_to new_task_path, class: "btn btn-warning" do %>
-          <i class="fa fa-plus" aria-hidden="true"></i> Dodaj zadanie
-        <% end %>
-      </div>
-    <% else %>
-      <div class="mr-auto p-2"><h4>Dodawanie nowego zadania</h4></div>
-    <% end %>
-
-    <!-- przycik cdo usuwania odhaczonych zadan, form_for jest po to, by ten przycisk działał, on jest submitem -->
-    <div class="p-2">
-      <%= button_tag(type: "submit", data: {confirm: "czy na pewno chcesz usunąć?" }, class: "btn btn-danger") do %>
-        <i class="fa fa-trash-o" aria-hidden="true"></i> Usuń zaznaczone zadania
-      <% end %>
-    </div>
-
-  </div>
-
-  <!-- tabelka z zadaniami -->
-  <table class="table table-hover table-responsive">
-
-    <thead class="thead-inverse">
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <th>Zadanie</th>
-        <th>Priorytet</th>
-        <th>Deadline</th>
-        <th>Czy zakończone?</th>
+        <th scope="col">Task</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Finished?</th>
       </tr>
     </thead>
-
     <tbody>
-
-      <tr class="table-active">
-        <td colspan="4"><h4>Uwaga PRZESTARZAŁE! Jesteś po terminie! Zrób je szybko!</h4></td>
+      <tr class="table-secondary">
+        <td colspan="4">Tasks after deadline! Do them now!</td>
       </tr>
-
       <% @tasks.each do |task| %>
         <% if task.deadline.to_date < Date.today %>
-          <%= render 'taskslist', t: task %>
+          <%= render partial: 'tasklist', locals: {t: task} %>
         <% end %>
       <% end %>
-
       <tr class="table-danger">
-        <td colspan="4"><h3>NA DZIŚ</h3></td>
+        <td colspan="4">Tasks ending today! Do them fast</td>
       </tr>
-
       <% @tasks.each do |task| %>
         <% if task.deadline.to_date == Date.today %>
-          <%= render 'taskslist', t: task %>
+          <%= render partial: 'tasklist', locals: {t: task} %>
         <% end %>
       <% end %>
-
       <tr class="table-warning">
-        <td colspan="4"><h3>NA JUTRO</h3></td>
+        <td colspan="4">Tasks ending tomorrow</td>
       </tr>
-
       <% @tasks.each do |task| %>
         <% if task.deadline.to_date == Date.tomorrow %>
-          <%= render 'taskslist', t: task %>
+          <%= render partial: 'tasklist', locals: {t: task} %>
         <% end %>
       <% end %>
-
       <tr class="table-success">
-        <td colspan="4"><h4>na później</h4></td>
+        <td colspan="4">Safe tasks</td>
       </tr>
-
       <% @tasks.each do |task| %>
         <% if task.deadline.to_date > Date.tomorrow %>
-          <%= render 'taskslist', t: task %>
+          <%= render partial: 'tasklist', locals: {t: task} %>
         <% end %>
       <% end %>
-
     </tbody>
   </table>
+  <%= button_tag(type: "submit", data: {confirm: "are you sure?" }, class: "btn btn-danger") do %>
+    <i class="fa fa-trash-o" aria-hidden="true"></i> Remove checked tasks
+  <% end %>
 <% end %>
