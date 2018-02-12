@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Task management', type: :feature do
-
-  context "adding new task" do
+  context 'adding new task' do
     scenario 'User creates a new task successfully' do
       visit '/'
       click_link 'Add new task'
@@ -32,7 +31,7 @@ RSpec.feature 'Task management', type: :feature do
       select 'important', from: 'Priority'
       fill_in 'Deadline', with: '27/02/2100'
       click_button 'submit'
-      expect(page).to have_css("input[type='checkbox']", count: 1)
+      expect(page).to have_css('input[type=\'checkbox\']', count: 1)
       page.check('tasks[]')
       click_button 'Remove checked tasks'
       expect(page).not_to have_text('my new task')

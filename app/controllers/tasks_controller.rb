@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.order(deadline: :DESC)
+    @tasks = Task.order(deadline: :ASC)
   end
 
   def new
@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path
     else
-      flash[:notice] = "All fields are required. Try again"
+      flash[:notice] = 'All fields are required. Try again'
       render :new
     end
   end

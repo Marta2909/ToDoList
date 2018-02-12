@@ -8,7 +8,7 @@ RSpec.describe 'tasks/new' do
   end
 
   it 'is the new action of tasks controller view' do
-    expect(controller.request.path_parameters[:controller]).to eq('tasks')
-    expect(controller.request.path_parameters[:action]).to eq('new')
+    expect(controller.request.path_parameters[:controller]).to eq 'tasks'
+    expect(controller.request.path_parameters[:action]).to eq 'new'
   end
 end
