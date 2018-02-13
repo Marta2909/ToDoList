@@ -6,7 +6,7 @@ RSpec.describe TasksController, type: :controller do
       task1 = Task.create(name: 'task1', priority: 'important', deadline: Date.today)
       task2 = Task.create(name: 'task2', priority: 'common', deadline: Date.tomorrow)
       get :index
-      expect(assigns(:tasks)).to eq([task2, task1])
+      expect(assigns(:tasks)).to eq([task1, task2])
     end
 
     it 'renders the index template' do
