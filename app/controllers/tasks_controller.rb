@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.all
+    #nowy !!!
   end
 
   def create
